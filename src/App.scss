@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
+
+@mixin _prefix($declarations, $property-prefixes: webkit moz ms o) {
+  @each $property, $value in $declarations {
+    @each $property-prefix in $property-prefixes {
+      -#{$property-prefix}-#{$property}: #{$value};
+    }
+    #{$property}: #{$value};
+  }
+}
+
+@mixin _background-size($size...) {
+  @include _prefix(
+    (
+      background-size: $size,
+    ),
+    (webkit moz ms)
+  );
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

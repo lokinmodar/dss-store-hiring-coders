@@ -1,0 +1,246 @@
+import React, { Component } from 'react';
+import axios from 'axios';
+import ReCaptchaComponent from '../ReCaptchaComponent';
+import SubmitButton from '../SubmitButton';
+import OverlayScrollbarsTextarea from '../OverlayScrollbarsTextarea';
+
+import 'overlayscrollbars/css/OverlayScrollbars.css';
+import './index.scss';
+
+export default class ContactForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nome: '',
+      empresa: '',
+      eMail: '',
+      telefone: '',
+      mensagem: '',
+      valid: 0,
+      formValid: 0,
+      sent: false,
+      buttonText: 'Enviar!'
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    const scrollbarTClasses = document.querySelector('.os-host-textarea');
+    scrollbarTClasses.classList.remove('os-theme-dark');
+    scrollbarTClasses.classList.add('os-theme-thin-dark');
+  }
+
+  handleInputChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+
+    const { mensagem } = this.state;
+    if (mensagem !== '') {
+      this.setState({ formValid: 1 });
+    }
+    const { formValid } = this.state;
+    if (formValid === 1) {
+      const div = document.getElementById('recaptcha');
+
+      const recval = div.dataset.recaptchavalid;
+
+      if (recval === '1') {
+        this.setState({ valid: 1 });
+        this.forceUpdate();
+      }
+    }
+  }
+
+  handleResetForm() {
+    // e.preventDefault();
+    this.setState({
+      nome: '',
+      empresa: '',
+      eMail: '',
+      telefone: '',
+      mensagem: '',
+      valid: 0,
+      formValid: 0,
+      sent: false,
+      buttonText: 'Enviar!'
+    });
+  }
+
+  async handleSubmit(e) {
+    e.preventDefault();
+
+    this.setState({
+      buttonText: 'Enviando...'
+    });
+
+    const { nome, empresa, eMail, telefone, mensagem } = this.state;
+
+    await axios
+      .post(process.env.REACT_APP_API_URI, {
+        name: nome,
+        company: empresa,
+        phone: telefone,
+        email: eMail,
+        message: mensagem
+      })
+      .then((/* res */) => {
+        this.setState({ sent: true, buttonText: 'Mensagen Enviada!' });
+        // console.log(res.data);
+        this.handleResetForm();
+      })
+      .catch(() =>
+        /* res */
+        {
+          // console.log('Message not sent', res.body);
+        }
+      );
+  }
+
+  render() {
+    const {
+      nome,
+      empresa,
+      eMail,
+      telefone,
+      mensagem,
+      valid,
+      formValid,
+      sent,
+      buttonText
+    } = this.state;
+
+    let reCaptcha;
+
+    if (formValid === 1) {
+      const { recaptchaVal } = this.props;
+      reCaptcha = <ReCaptchaComponent data-recaptchavalid={recaptchaVal} />;
+    } else {
+      reCaptcha = <></>;
+    }
+
+    return (
+      <>
+        <form onSubmit={this.handleSubmit}>
+          <h1>FALE CONOSCO</h1>
+          <div id='info'>
+            <h2>Dussou Proteções Eletrônicas</h2>
+            <address>
+              <p>CNPJ: 31.929.775/0001-70</p>
+              <p>Rua Miguel Arnaudas, 369, Pq. Ipê </p>
+              <p>São Paulo-SP, Cep 05572-110</p>
+              <p>(11) 95987-4320</p>
+            </address>
+          </div>
+          <p id='message'>
+            A Dussou Proteções Eletônicas tem o compromisso de fornecer o mais
+            alto nível de atendimento ao cliente. Preencha o formulário a seguir
+            descrevendo suas necessidades e clique no botão &quot;Enviar&quot;.
+            Aguardamos seu contato!
+          </p>
+
+          <label htmlFor='nome'>
+            <span>Nome completo</span>
+            <br />
+            <input
+              id='name'
+              type='text'
+              name='nome'
+              value={nome}
+              placeholder='Digite seu Nome Completo'
+              onChange={this.handleInputChange}
+              onFocus={this.handleInputChange}
+              onBlur={this.handleInputChange}
+              onKeyUp={this.handleInputChange}
+              title='Preencha este campo.'
+              required
+            />
+          </label>
+          <label htmlFor='empresa'>
+            <span>Nome da Empresa (Opcional)</span>
+            <br />
+            <input
+              id='empresa'
+              type='text'
+              name='empresa'
+              value={empresa}
+              placeholder='Digite o nome da sua empresa'
+              onChange={this.handleInputChange}
+              onFocus={this.handleInputChange}
+              onBlur={this.handleInputChange}
+              onKeyUp={this.handleInputChange}
+            />
+          </label>
+          <label htmlFor='eMail'>
+            <span>Endereço de e-mail</span> <br />
+            <input
+              id='eMail'
+              type='eMail'
+              name='eMail'
+              value={eMail}
+              placeholder='Digite seu endereço de E-mail'
+              onChange={this.handleInputChange}
+              onFocus={this.handleInputChange}
+              onBlur={this.handleInputChange}
+              onKeyUp={this.handleInputChange}
+              title='Preencha este campo.'
+              required
+            />
+          </label>
+          <label htmlFor='telefone'>
+            <span>Telefone</span> <br />
+            <input
+              type='text'
+              id='telefone'
+              name='telefone'
+              value={telefone}
+              placeholder='Digite seu telefone de contato'
+              onChange={this.handleInputChange}
+              onFocus={this.handleInputChange}
+              onBlur={this.handleInputChange}
+              onKeyUp={this.handleInputChange}
+              title='Preencha este campo.'
+              required
+            />
+          </label>
+
+          <label htmlFor='mensagem'>
+            <span>Digite seus comentários ou perguntas abaixo</span>
+            <br />
+            <OverlayScrollbarsTextarea
+              options={{
+                paddingAbsolute: true,
+                scrollbars: { autoHide: 'scroll' }
+              }}
+              id='mensagem'
+              name='mensagem'
+              placeholder='O que deseja saber?'
+              minLength='20'
+              maxLength='2000'
+              value={mensagem}
+              className='description'
+              onChange={this.handleInputChange}
+              onFocus={this.handleInputChange}
+              onBlur={this.handleInputChange}
+              onKeyUp={this.handleInputChange}
+              required
+              title='Preencha este campo.'
+            />
+          </label>
+
+          {reCaptcha}
+          <SubmitButton
+            name='send'
+            valid={valid}
+            onFocus={this.handleInputChange}
+            onMouseOver={this.handleInputChange}
+            onClick={this.handleInputChange}
+            sent={sent}
+          >
+            {buttonText}
+          </SubmitButton>
+        </form>
+      </>
+    );
+  }
+}
