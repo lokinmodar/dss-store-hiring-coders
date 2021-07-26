@@ -127,7 +127,7 @@ const CustomerSignupForm: FunctionComponent = () => {
 
       localStorage.setItem('CustomerData', JSON.stringify(data));
 
-      console.info('DADOS DO FORMULÁRIO ', data);
+      // console.info('DADOS DO FORMULÁRIO ', data);
     }, 1000);
   }
 
