@@ -11,7 +11,7 @@ Você pode usar:
 Roda o app em modo de desenvolvedor.\
 Abra [http://localhost:3000](http://localhost:3000) para ver no browser.
 
-Online demo: [Link](https://github.com/rbmelolima/Formulario-React)
+Online demo: [Link](https://dss-store-hiring-coders.netlify.app)
 
 ### `npm run build`
 
