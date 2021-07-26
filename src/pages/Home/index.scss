@@ -1,18 +1,13 @@
 main {
   background: #020202;
-  #bflogo {
-    position: fixed;
-    z-index: 3;
-    top: 6vh;
-    height: 30vh;
-    width: auto;
-    left: 4vw;
 
-
+  .top {
+    min-height: 350px;
+    div.carousel{
+      height: 300px;
+      img {
+        height: 280px;
+      }
+    }
   }
-
-
 }
-
-
-

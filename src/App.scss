@@ -29,6 +29,39 @@ main {
   justify-content: flex-start;
 }
 
+#bflogo {
+  position: fixed;
+  z-index: 3;
+  top: 6vh;
+  height: 30vh;
+  left: 4vw;
+}
+
+.carousel {
+  margin-top: 5%;
+  width: 100%;
+  min-height: 60%;
+  img {
+    //margin-top: 4vh;
+    max-width: 80%;
+    //max-height: 450px;
+  }
+}
+
+#contentHome {
+  height: 20%;
+}
+
+#bflogoHome {
+  position: fixed;
+  z-index: 3;
+  top: 6vh;
+  height: 20vh;
+  width: auto;
+  left: 4vw;
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

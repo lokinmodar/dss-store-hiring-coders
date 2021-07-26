@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-
 import formValidation from '../../utils/formValidation';
-
 import './index.scss';
 
 const ContactForm = (): JSX.Element => {
   const [inputs, setInputs] = useState({ email: '' });
-
   const handleSubmit = (e: { preventDefault: () => void }): void => {
     e.preventDefault();
     const validation = formValidation(inputs.email);
@@ -44,7 +41,6 @@ const ContactForm = (): JSX.Element => {
             required
           />
         </label>
-
         <button type='submit'>Enviar!</button>
       </form>
     </article>

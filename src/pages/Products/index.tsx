@@ -2,7 +2,7 @@ import React from 'react';
 
 import SectionContainer from '../../components/SectionContainer';
 import ProductCard from '../../components/ProductCard';
-import jsonData from '../../data/products.json';
+import jsonData from '../../database/products.json';
 
 import './index.scss';
 

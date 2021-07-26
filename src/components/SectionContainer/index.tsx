@@ -60,24 +60,13 @@ const SectionContainer = styled.section`
       align-items: center;
       flex-wrap: wrap;
     }
-
-    #bflogo {
-      position: fixed;
-      z-index: 3;
-      top: 6vh;
-      height: 30vh;
-      left: 4vw;
-    }
-
-    .carousel {
-      margin-top: 5%;
-      width: 100%;
-      min-height: 60%;
-      img {
-        //margin-top: 4vh;
-        max-width: 80%;
-        //max-height: 450px;
-      }
+    .productListHome {
+      min-width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-content: center;
+      align-items: center;
+      flex-wrap: wrap;
     }
   }
 

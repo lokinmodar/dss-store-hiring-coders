@@ -1,8 +1,11 @@
 form {
-  background: #fff;
   display: flex;
-  flex-direction: column;
   text-align: left;
+  align-items: center;
+  justify-content: center;
+  align-content: flex-start;
+  flex-direction: column;
+  flex-wrap: nowrap;
 
   #info {
     address {
@@ -56,6 +59,7 @@ form {
     font-family: inherit;
     border: 1px solid #888;
     background: #fff;
+
     padding: 10px 15px;
     margin-bottom: 15px;
     border-radius: 4px;

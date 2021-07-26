@@ -1,26 +1,15 @@
 article {
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-bottom: 2%;
 
-
-
-
   form {
-
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
     color: #fff;
-
-
-
-
-
 
     h1 {
       font-family: 'Yanone Kaffeesatz', 'Noto Mono', 'Arial Narrow', sans-serif;
@@ -43,12 +32,9 @@ article {
       color: #fff;
     }
 
-
     input[type="email"] {
       width: 80%;
-
       border: 2px solid #fff;
-
       font-size: 14px;
     }
 
@@ -59,6 +45,5 @@ article {
       width: 120px;
       height: 40px;
     }
-
   }
 }

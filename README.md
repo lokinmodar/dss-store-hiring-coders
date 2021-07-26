@@ -1,25 +1,32 @@
-# Store Landing Page
+# DSS Store
 
-Projeto para a maratona VTEX Hiring Coders 2 - Desafio #1.
+Projeto para a maratona VTEX Hiring Coders 2 - Desafio #2.
 
 ## Scripts
 
 Você pode usar:
 
-### `yarn start`
+### `npm run start`
 
 Roda o app em modo de desenvolvedor.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Abra [http://localhost:3000](http://localhost:3000) para ver no browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+T
 
-### `yarn build`
+### `npm run build`
 
 Faz a build do projeto.
 
-### `yarn eject`
+### Tecnologias utilizadas:
 
+- React
+- Typescript
+
+### Racional para criação:
+
+Aproveitei a base criada para a landing page e incorporei uma base de dados mockada em JSON que usei para popular os cards de produtos. As imagens dos produtos são placeholders advindos do site [PlaceIMG](https://placeimg.com).
+
+Usei esse formulário aqui como base para meu formulário de cadastro: [Link](https://github.com/rbmelolima/Formulario-React).
 
 ## Sobre o autor:
 

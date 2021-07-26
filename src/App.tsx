@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import Favicon from './images/logo.svg';
+import Favicon from './images/logo-tope-mini.svg';
 
 import './App.scss';
 import Routes from './routes';
